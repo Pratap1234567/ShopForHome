@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="banner">
+    <div *ngIf="!success">
+        <div class="formbox">
+            <h1>REGISTRATION FORM</h1>
+            <form #formref="ngForm" (ngSubmit)="register()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="user.email" #email="ngModel" required pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]{2,3}" [class.is-invalid]="email.invalid && email.touched">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
+                        <small class="text-danger" *ngIf="email.errors['required']">*Email is Required</small>
+                        <small class="text-danger" *ngIf="email.errors['pattern']">*Enter the valid Email id </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="user.password" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched">
+                    <small class="text-danger" [class.d-none]="password.valid || password.untouched">*password is Required</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="user.username" #username="ngModel" required [class.is-invalid]="username.invalid && username.touched">
+                    <small class="text-danger" [class.d-none]="username.valid || username.untouched">*username is Required</small>
+                </div>
+                <!-- <div class="form-group">
+                    <label for="exampleInputPassword1">Role</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                        <option value="ROLE_USER">ROLE_USER</option>
+                      </select>
+                </div> -->
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Phone</label>
+                    <input type="phone" class="form-control" name="phone" placeholder="Phone" [(ngModel)]="user.phone" #phone="ngModel" required [class.is-invalid]="phone.invalid && phone.touched">
+                    <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">*phone is Required</small>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary" [disabled]="formref.invalid">Register</button>&nbsp;&nbsp;&nbsp; already a user <a routerLink="../login">Login</a>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="success">
+        Logout to Register
+    </div>
+</div>

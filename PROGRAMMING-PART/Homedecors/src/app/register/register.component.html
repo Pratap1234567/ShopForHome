@@ -1,0 +1,61 @@
+<div class="banner">
+    <nav class="navbar navbar-expand-lg navbar-dark text-light">
+        <a class="navbar-brand mb-0 h1 letterspace " routerLink="../home">Home Decors</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse naver" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="wishlist">wishList</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="cartlist">CartList</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div *ngIf="!success">
+        <div class="formbox">
+            <h1>USER REGISTRATION FORM</h1>
+            <form #formref="ngForm" (ngSubmit)="register()">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="user.email" #email="ngModel" required pattern="[A-Za-z0-9]+@[a-z]+\.[a-z]{2,3}" [class.is-invalid]="email.invalid && email.touched">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div *ngIf="email.errors && (email.invalid && email.touched)">
+                        <small class="text-danger" *ngIf="email.errors['required']">*Email is Required</small>
+                        <small class="text-danger" *ngIf="email.errors['pattern']">*Enter the valid Email id </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="user.password" #password="ngModel" required [class.is-invalid]="password.invalid && password.touched">
+                    <small class="text-danger" [class.d-none]="password.valid || password.untouched">*password is Required</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username" [(ngModel)]="user.username" #username="ngModel" required [class.is-invalid]="username.invalid && username.touched">
+                    <small class="text-danger" [class.d-none]="username.valid || username.untouched">*username is Required</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Phone</label>
+                    <input type="phone" class="form-control" name="phone" placeholder="Phone" [(ngModel)]="user.phone" #phone="ngModel" required [class.is-invalid]="phone.invalid && phone.touched">
+                    <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">*phone is Required</small>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-primary" [disabled]="formref.invalid">Register</button>&nbsp;&nbsp;&nbsp; already a user <a routerLink="../login">Login</a>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="success">
+        Logout to Register
+    </div>
+</div>

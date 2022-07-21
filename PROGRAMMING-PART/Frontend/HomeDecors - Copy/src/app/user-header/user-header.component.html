@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/userdash">USER DASHBOARD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" routerLink="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="../userdash">Products</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLink="/userdash/chair">Chair</a>
+                        <a class="dropdown-item" routerLink="/userdash/table">Table</a>
+                        <a class="dropdown-item" routerLink="/userdash/frame">Frame</a>
+                        <a class="dropdown-item" routerLink="/userdash/bag">Bags</a>
+                        <a class="dropdown-item" routerLink="/userdash/wall">WallHangings</a>
+                        <a class="dropdown-item" routerLink="/userdash/home">HomeDecors</a>
+                        <a class="dropdown-item" routerLink="/userdash/light">Lights</a>
+                        <a class="dropdown-item" routerLink="/userdash/bed">Beds</a>
+                        <a class="dropdown-item" routerLink="/userdash/sofa">Sofas</a>
+                        <a class="dropdown-item" routerLink="/userdash/clock">Clocks</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLink="/userdash/SortByPrice">SortByPrice</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="/wishlist">wishlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="/cartlist">CartList</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <button class="btn btn-outline-success my-2 my-sm-0">SortByPrice</button>
+                </li> -->
+
+                <li class="nav-item">
+                    <a class="nav-link " routerLink="/contact">Contactus</a>
+                </li>&nbsp;&nbsp;&nbsp;
+                <li>
+                    <div class="form-inline my-2 my-lg-0 ">
+                        <div class="sameline">
+                            <input #myinput class="form-control mr-sm-2" placeholder="Search for Products..." aria-label="Search" (keyup.enter)="dosearch(myinput.value)"> &nbsp;
+                            <button class="btn btn-outline-success my-2 my-sm-0" (click)="dosearch(myinput.value)">Search</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+            <button *ngIf="! isLoggedIn()" type="button" class="btn btn-secondary" routerLink="/login">Login</button>&nbsp;
+            <button *ngIf="isLoggedIn()" type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
+        </div>
+    </div>
+</nav>

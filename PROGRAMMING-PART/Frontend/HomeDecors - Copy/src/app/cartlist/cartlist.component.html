@@ -1,0 +1,129 @@
+<div class="banner">
+    <app-user-header></app-user-header>
+    <div class="container">
+        <div class="offer">
+            <h1>** CART LIST **</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 spacer" *ngFor="let ele of WishListProducts">
+                <div class="card" style="width: 18rem; margin-top: 30px;">
+                    <img class="card-img-top" src="{{ele.imageurl}}" alt="Card image cap" style=" width: 288px;height: 288px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ele.id}} - {{ele.name}}</h5>
+
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <h6 class="card-subtitle mb-2 text-danger">Quantity </h6>
+                        <button type="button" (click)="dec(ele)"><i class="fa fa-minus"></i></button>&nbsp;&nbsp;
+                        <span class="text-danger" style="font-size: 25px;">{{ele.rqty}}</span>&nbsp;&nbsp;
+                        <button type="button" (click)="inc(ele)"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" (click)="removefromCart(ele)"><i class="fa fa-trash"></i></button>
+                        <br>
+                        <h4 class="card-subtitle mb-2 text-danger">{{ele.price*ele.rqty}}/- only</h4>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer" *ngIf="WishListProducts?.length!=0">
+            <h1> CONTINUE SHOPPING </h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-dark" (click)="checkout()">PROCEED TO BUY <i class="fas fa-shopping-cart"></i></button>
+        </div>
+        <br>
+        <div *ngIf="showform">
+            <h3 class="text-center text-danger">Address</h3>
+            <div class="address">
+                <form class="addform" #formref="ngForm" (ngSubmit)="addaddress()">
+                    <div class="form-group ">
+                        <label>H-No</label>
+                        <input type="text" class="form-control" name="hno" placeholder="Enter House No" #hno="ngModel" [(ngModel)]="Deliveryaddress.houseno" [class.is-invalid]="hno.invalid && hno.touched" required>
+                        <small class="text-danger" [class.d-none]="hno.valid || hno.untouched">*H-No is Required</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Address</label>
+                        <textarea class="form-control" name="address" rows="3" placeholder="enter the Current Address" #address="ngModel" required [(ngModel)]="Deliveryaddress.address" [class.is-invalid]="address.invalid && address.touched"></textarea>
+                        <small class="text-danger" [class.d-none]="address.valid || address.untouched">*H-No is Required</small>
+                    </div>
+                    <div class="form-group ">
+                        <label>LandMark</label>
+                        <input type="text" class="form-control" name="landmark" placeholder="Enter LandMark of address" #landm="ngModel" required [(ngModel)]="Deliveryaddress.landmark" [class.is-invalid]="landm.invalid && landm.touched">
+                        <small class="text-danger" [class.d-none]="landm.valid || landm.untouched">*H-No is Required</small>
+                    </div>
+                    <div class="form-group ">
+                        <label>state</label>
+                        <input type="text" class="form-control" name="state" placeholder="Enter State" #state="ngModel" required [(ngModel)]="Deliveryaddress.state" [class.is-invalid]="state.invalid && state.touched">
+                        <small class="text-danger" [class.d-none]="state.valid || state.untouched">*H-No is Required</small>
+                    </div>
+                    <div class="form-group ">
+                        <label>pincode</label>
+                        <input type="text" class="form-control" name="pincode" placeholder="Enter Pincode" #pincode="ngModel" required [(ngModel)]="Deliveryaddress.pincode" [class.is-invalid]="pincode.invalid && pincode.touched">
+                        <small class="text-danger" [class.d-none]="pincode.valid || pincode.untouched">*H-No is Required</small>
+                    </div>
+                    <div class="form-group ">
+                        <label>Country</label>
+                        <input type="text" class="form-control" name="country" placeholder="Enter Country" #country="ngModel" required [(ngModel)]="Deliveryaddress.country" [class.is-invalid]="country.invalid && country.touched">
+                        <small class="text-danger" [class.d-none]="country.valid || country.untouched">*H-No is Required</small>
+                    </div>
+                    <div class="form-group ">
+                        <label>Mobile Number</label>
+                        <input type="phone" class="form-control" name="phone" placeholder="Enter Phone No" #phone="ngModel" required [(ngModel)]="Deliveryaddress.mobile" [class.is-invalid]="phone.invalid && phone.touched">
+                        <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">*H-No is Required</small>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" [disabled]="formref.invalid">Submit</button>
+
+                </form>
+            </div>
+        </div>
+        <div class="address">
+            <div *ngIf="showbill" class="p-3 showform">
+                <table class="invoice">
+                    <thead>
+                        <tr>
+                            <td>PARTICULAR</td>
+                            <td>QUANTITY</td>
+                            <td>PRICE</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of WishListProducts">
+                            <td>{{p.name}}</td>
+                            <td>{{p.rqty}}</td>
+                            <td>{{p.price *p.rqty}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+                            <td colspan="2">TOTAL</td>
+                            <td>{{totalAmount}}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">dISCOUNT</td>
+                            <td>{{discountAmount}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">PAY</td>
+                            <td>{{totalAmount-discountAmount}}</td>
+                        </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <div class="offer" *ngIf="showbill">
+            <h1> CHECK OUT PAY </h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select class="form-control " style="width:300px ;">
+                <option>SELECT MODE OF PAYMENT</option>
+                <option value="COD">CASH ON DELIVERY</option>
+              </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-dark" (click)="payment()">PAY {{totalAmount-discountAmount}} &#8377;</button>
+        </div>
+        <br>
+    </div>
+</div>

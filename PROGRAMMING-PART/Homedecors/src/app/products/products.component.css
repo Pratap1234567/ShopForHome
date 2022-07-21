@@ -1,0 +1,5 @@
+.book {
+    display: flex;
+    float: left;
+    margin: 5px;
+}

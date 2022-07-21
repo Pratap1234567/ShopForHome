@@ -1,0 +1,34 @@
+<div class="banner">
+    <app-user-header></app-user-header>
+    <div class="container">
+        <div class="offer">
+            <h1>** CART LIST **</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 spacer" *ngFor="let ele of WishListProducts">
+                <div class="card" style="width: 18rem; margin-top: 30px;">
+                    <img class="card-img-top" src="{{ele.imageurl}}" alt="Card image cap" style=" width: 288px;height: 288px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ele.id}} - {{ele.name}}</h5>
+
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <h6 class="card-subtitle mb-2 text-danger">Quantity </h6>
+                        <button type="button" (click)="dec(ele)"><i class="fa fa-minus"></i></button>&nbsp;&nbsp;
+                        <span class="text-danger" style="font-size: 25px;">{{ele.rqty}}</span>&nbsp;&nbsp;
+                        <button type="button" (click)="inc(ele)"><i class="fa fa-plus"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" (click)="removefromCart(ele)"><i class="fa fa-trash"></i></button>
+                        <br>
+                        <h4 class="card-subtitle mb-2 text-danger">{{ele.price*ele.rqty}}/- only</h4>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offer">
+            <h1> CKECK OUT PAY </h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-dark" (click)="checkout()">PROCEED TO CHECK OUT</button>
+
+        </div>
+    </div>
+</div>

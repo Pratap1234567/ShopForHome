@@ -1,0 +1,20 @@
+.banner {
+    width: 100%;
+    height: auto;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url(../../Images/wishlist-1.jpg);
+    /* background-image: url("../../Images/room.jpg"); */
+    background-size: cover;
+    background-position: center;
+}
+
+.offer {
+    margin-top: 30px;
+    width: 100%;
+    height: 120px;
+    background-color: #283618;
+    opacity: 0.7;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
