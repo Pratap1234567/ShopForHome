@@ -106,5 +106,11 @@ public class CustomerContoller {
 			@PathVariable("country") String country, @PathVariable("mobile") String mobile) {
 		customerService.SaveDeliveryaddress(uid, hno, address, landmark, state, pincode, country, mobile);
 	}
+	
+//	searching user
+	@GetMapping(value = "SearchUser/{name}")
+	public List<Customer> getUserbysearch(@PathVariable("name") String name){
+		return customerService.getallCustomerbySearch(name);
+	}
 
 }

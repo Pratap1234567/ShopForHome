@@ -1,5 +1,6 @@
 package com.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.annotations.SQLDelete;
@@ -56,6 +57,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	@Transactional
 	@Query("delete from  CartList m")
 	public void deleteallCart();
+	
+	@Query("select m from Customer m where m.username like concat('%',:name,'%')")
+	public List<Customer> getCustomersByNamesearch(@Param("name") String name);
 
 	
 

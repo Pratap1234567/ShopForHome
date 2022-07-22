@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       alert("SuccessFully registered");
       console.log(d);
       this.router.navigate(['login'])
-    }, f => console.log(f), () => console.log("SuccessFully Registered"))
+    }, f => { console.log(f); alert("User name already exist"); this.ngOnInit() }, () => console.log("SuccessFully Registered"))
   }
 
 }

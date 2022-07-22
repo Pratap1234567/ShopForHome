@@ -92,6 +92,9 @@ export class RestService {
     return this.http.get<Customer[]>("http://localhost:8181/admin/GetAllUsers");
   }
 
+  public getUserbySearch(name: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`http://localhost:8181/SearchUser/${name}`);
+  }
   // products
   public allproducts(): Observable<Product[]> {
     return this.http.get<Product[]>("http://localhost:8282/getallProducts")
@@ -108,6 +111,12 @@ export class RestService {
   public PriceSortedProducts(): Observable<Product[]> {
     return this.http.get<Product[]>("http://localhost:8282/PriceSortedProducts")
   }
+
+
+  public QtySortedProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>("http://localhost:8282/QtySortedProducts")
+  }
+
 
 
 
@@ -139,6 +148,21 @@ export class RestService {
 
   updateProductQty(pid: number, sqty: number) {
     return this.http.put(`http://localhost:8282/UpdateQty/${pid}/${sqty}`, { pid, sqty });
+  }
+  adminupdateProductQty(pid: number, sqty: number) {
+    return this.http.put(`http://localhost:8282/AdminUpdateQty/${pid}/${sqty}`, { pid, sqty });
+  }
+
+  adminupdateProductprice(pid: number, sqty: number) {
+    return this.http.put(`http://localhost:8282/AdminUpdateprice/${pid}/${sqty}`, { pid, sqty });
+  }
+
+  adminupdateProductname(pid: number, name: string) {
+    return this.http.put(`http://localhost:8282/AdminUpdatename/${pid}/${name}`, { pid, name });
+  }
+
+  deleteproduct(id: number) {
+    return this.http.delete(`http://localhost:8282/delete/${id}`)
   }
 
   // sending email to the Customer 

@@ -22,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Query("select m from Product m where m.category like concat( '%',:cname,'%')")
 	public List<Product> getproductsbyCategory(@Param("cname") String cname);
 	
-	@Query("select m from Product m where m.name like concat( '%',:cname,'%')")
+	@Query("select m from Product m where m.name like concat( :cname,'%')")
 	public List<Product> getproductsbyName(@Param("cname") String cname);
 
 	@Modifying
@@ -34,6 +34,26 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	@Query("select m from Product m order by m.price asc")
 	public List<Product> pricesortedProducts();
+	
+	@Query("select m from Product m order by m.qty asc")
+	public List<Product> QtysortedProducts();
+	
+	@Modifying
+	@Transactional
+	@Query("delete from Product m where m.name= :name")
+	public void deleteProduct(@Param("name") String name);
+	
+	
+	@Modifying
+	@Transactional
+	@Query("update Product c set c.price = :price where c.id = :id")
+	public void updateprice(@Param("price") float price,@Param("id") int id);
+
+	
+	@Modifying
+	@Transactional
+	@Query("update Product c set c.name = :name where c.id = :id")
+	public void updatename(@Param("name") String name,@Param("id") int id);
 
 
 }

@@ -1,0 +1,31 @@
+<div class="banner">
+    <app-admin-header></app-admin-header>
+    <div class="container center">
+        <div class="offert">
+            <div class="form-inline my-2 my-lg-0 ">
+                <div class="sameline">
+                    <input #myinput class="form-control mr-sm-2" placeholder="Search for Products..." aria-label="Search" style="margin: 10px;" (keyup.enter)="dosearch(myinput.value)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-outline-success my-2 my-sm-0" (click)="dosearch(myinput.value)">Search</button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <div class="offer sameline col-sm-6 col-md-9" *ngFor="let ele of items">
+                <!-- <h1 style="font-weight:bold;">{{ele.id}}</h1>&nbsp;&nbsp;&nbsp;
+                <i class="fa fa-circle"></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                <img src="{{ele.imageurl}}" alt="" width="100px" height="100px" style="margin-left: 20px;"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <h2>{{ele.name}}</h2> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input #qty type="text" placeholder="{{ele.qty}} available"> &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="pupdate(ele.id,qty.value)">update <i class="fa fa-edit"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;
+                <input #price type="text" placeholder="{{ele.price}} only/-" required> &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="updateprice(ele.id,price.value)">update price <i class="fa fa-edit"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;
+                <input #name type="text" placeholder="{{ele.name}} "> &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-outline-success my-2 my-sm-0" (click)="updatename(ele.id,name.value)">update name<i class="fa fa-edit"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <button class="btn btn-danger" (click)="deleteproduct(ele)">Delete <i class="fa fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+</div>

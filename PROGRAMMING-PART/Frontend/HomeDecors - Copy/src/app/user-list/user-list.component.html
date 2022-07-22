@@ -1,24 +1,31 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
+
 <div class="banner">
+    <app-admin-header></app-admin-header>
     <div class="container">
+        <div class="offer">
+            <div class="form-inline my-2 my-lg-0 ">
+                <div class="sameline">
+                    <input #myinput class="form-control mr-sm-2" placeholder="Search for Users..." aria-label="Search" style="margin: 10px;" (keyup.enter)="dosearch(myinput.value)"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-outline-success my-2 my-sm-0" (click)="dosearch(myinput.value)">Search</button>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            <div class="col-4">
-                <div class="products">
-                    <!-- <-- style="background-color: #10002b;" -->
-                    <div class="cards" *ngFor="let ele of users">
-                        <div class="card" style="width: 18rem;">
-
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFrZSUyMHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Card image cap" style="width: 288px;height: 200px;">
-
-                            <div class="card-body text-muted">
-                                <h5 class="card-title">{{ele.username}}</h5>
-                                <h6 class="card-subtitle mb-2 ">{{ele.email}}</h6>
-                                <p class="card-text">{{ele.wishlist}}</p>
-                                <p class="card-text">{{ele.cartlist}}</p>
-                                <button class="btn btn-primary">user</button>
-                                <button class="btn btn-primary">admin</button>
-                            </div>
-                        </div>
+            <div class="col-lg-4 spacer" *ngFor="let ele of users">
+                <!-- <-- style="background-color: #10002b;" -->
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="data:image/png;base64,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"
+                        alt="Card image cap" style="width: 288px;height: 200px;">
+                    <div class="card-body text-muted">
+                        <h5 class="card-title">{{ele.username}}</h5>
+                        <h6 class="card-subtitle mb-2 ">{{ele.email}}</h6>
+                        <h6 class="card-subtitle mb-2 ">{{ele?.deliveryAddress?.address}} {{ele?.deliveryAddress?.state}} {{ele?.deliveryAddress?.country}} {{ele?.deliveryAddress?.pincode}}</h6>
+                        <input type="phone" placeholder="{{ele.phone}}" #mob>
+                        <br><br>
+                        <!-- <p class="card-text">{{ele.cartlist}}</p> -->
+                        <button class="btn btn-primary" (click)="updateuserphone(ele.username,mob.value)">Update <i class="fa fa-edit"></i></button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-primary" (click)="deleteUser(ele)">Delete <i class="fa fa-trash"></i></button>
                     </div>
                 </div>
             </div>

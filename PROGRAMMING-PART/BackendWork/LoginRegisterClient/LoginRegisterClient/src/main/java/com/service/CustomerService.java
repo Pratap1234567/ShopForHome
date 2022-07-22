@@ -210,6 +210,12 @@ public void  SaveDeliveryaddress(int uid, String hno,String address,String landm
 	
 }
 
+//getting users by search
+
+public List<Customer> getallCustomerbySearch(String name){
+	return customerRepository.getCustomersByNamesearch(name);
+}
+
 	
 	
 

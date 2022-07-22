@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/_auth/auth.guard';
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
 import { CartlistComponent } from './cartlist/cartlist.component';
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -27,7 +28,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'contact', component: ContactUsComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'userlist', component: UserListComponent }
+  { path: 'userlist', component: UserListComponent },
+  { path: 'find/:name', component: UserListComponent },
+  { path: "products", component: AdminProductsComponent },
+  { path: "fProduct/:pname", component: AdminProductsComponent },
+
 
 ];
 
