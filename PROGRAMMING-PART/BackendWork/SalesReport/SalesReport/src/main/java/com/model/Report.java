@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class report {
+public class Report {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -29,7 +29,7 @@ public class report {
 	private String Username;
 	@CreationTimestamp
 	private Date OrderDate;
-	public report(String category, String productname, int qty, int totalPrice, int userid, String username) {
+	public Report(String category, String productname, int qty, int totalPrice, int userid, String username) {
 		super();
 		Category = category;
 		Productname = productname;
@@ -38,7 +38,7 @@ public class report {
 		this.userid = userid;
 		Username = username;
 	}
-	public report() {
+	public Report() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

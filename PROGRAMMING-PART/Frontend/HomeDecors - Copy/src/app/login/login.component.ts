@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
           this.Authservice.setToken(data.token);
         this.Authservice.setroles(data.user.role);
         this.service.setFullUserDetails(data.user);
+        this.service.saveUsername(data.user.name);
         const role = data.user.role;
         if (role === 'ROLE_USER') {
           console.log("Logged in as a User");

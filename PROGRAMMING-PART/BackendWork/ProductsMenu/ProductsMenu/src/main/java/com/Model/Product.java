@@ -21,9 +21,9 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(int id, String name, String imageurl, float price,int qty,String Category,int rqty) {
+	public Product( String name, String imageurl, float price,int qty,String Category,int rqty) {
 		super();
-		this.id = id;
+		
 		this.name = name;
 		this.imageurl = imageurl;
 		this.price = price;

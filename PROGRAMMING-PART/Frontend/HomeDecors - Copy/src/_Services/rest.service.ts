@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, retry } from 'rxjs';
 import { Address } from 'src/_Models/address';
 import { Customer } from 'src/_Models/customer';
+import { Dreport } from 'src/_Models/dreport';
 import { Product } from 'src/_Models/product';
 import { Report } from 'src/_Models/report';
 
@@ -20,6 +21,7 @@ export class RestService {
   );
   user!: Customer;
   users!: Customer[]
+  customername!: string;
   // login user 
   public LoginUser(cust: Customer) {
     return this.http.post("http://localhost:8181/authenticate", cust, { headers: this.requestHeaders });
@@ -176,5 +178,33 @@ export class RestService {
 
   savetoreport(category: string, productname: string, qty: number, totalprice: number, userid: number, username: string) {
     return this.http.post(`http://localhost:8484/salereport/${category}/${productname}/${qty}/${totalprice}/${userid}/${username}`, { category, productname, qty, totalprice, userid, username });
+  }
+
+  saveUsername(name: string) {
+    this.customername = name;
+  }
+  getusername() {
+    return this.customername;
+  }
+
+  getreport(): Observable<Report[]> {
+    return this.http.get<Report[]>("http://localhost:8484/getReport");
+  }
+
+  dayreport(): Observable<Report[]> {
+    return this.http.get<Report[]>("http://localhost:8484/todayReport");
+  }
+
+  Categoryreport(): Observable<Dreport[]> {
+    return this.http.get<Dreport[]>("http://localhost:8484/CategoryReport");
+  }
+
+
+  saveproduct(product: Product) {
+    return this.http.post(`http://localhost:8282/saveProduct`, product);
+  }
+
+  income() {
+    return this.http.get("http://localhost:8484/income");
   }
 }

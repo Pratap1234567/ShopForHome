@@ -53,7 +53,7 @@ export class AdminProductsComponent implements OnInit {
 
   updateprice(pid: number, price: string) {
     var p = +price;
-    this.service.adminupdateProductprice(pid, p).subscribe(d => { alert("Price Updated SuccessFully"); this.ngOnInit(); }, f => { console.log("Error " + f); alert("Enter price Before Clicking Update") });
+    this.service.adminupdateProductprice(pid, p).subscribe(d => { alert("Price Updated SuccessFully"); this.ngOnInit(); }, f => { console.log("Error " + f); alert("Enter price Before Clicking Update ") });
   }
 
   updatename(id: number, name: string) {

@@ -1,0 +1,40 @@
+<app-admin-header></app-admin-header>
+<div class="banner">
+    <div class="formbox">
+        <h1>ADD PRODUCT</h1>
+        <form #formref="ngForm" (ngSubmit)="addproduct()">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Name</label>
+                <input type="text" class="form-control" name="pname" aria-describedby="emailHelp" placeholder="Enter Product Name" [(ngModel)]="product.name" #pname="ngModel" required [class.is-invalid]="pname.invalid && pname.touched">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                <div *ngIf="pname.errors && (pname.invalid && pname.touched)">
+                    <small class="text-danger" *ngIf="pname.errors['required']">*Product Name is Required</small>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Image Url</label>
+                <input type="text" class="form-control" name="purl" placeholder="Image Url" [(ngModel)]="product.imageurl" #purl="ngModel" required [class.is-invalid]="purl.invalid && purl.touched">
+                <small class="text-danger" [class.d-none]="purl.valid || purl.untouched">*imageurl is Required</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Price</label>
+                <input type="number" class="form-control" name="price" placeholder="Price" [(ngModel)]="product.price" #price="ngModel" required [class.is-invalid]="price.invalid &&price.touched">
+                <small class="text-danger" [class.d-none]="price.valid || price.untouched">*Price is Required</small>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputPassword1">Quantity</label>
+                <input type="number" class="form-control" name="qty" placeholder="Quantity" [(ngModel)]="product.qty" #qty="ngModel" required [class.is-invalid]="qty.invalid && qty.touched">
+                <small class="text-danger" [class.d-none]="qty.valid || qty.untouched">*Quantity is Required</small>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Cateogry</label>
+                <input type="text" class="form-control" name="cateogry" placeholder="Cateogry" [(ngModel)]="product.category" #cateogry="ngModel" required [class.is-invalid]="cateogry.invalid &&cateogry.touched">
+                <small class="text-danger" [class.d-none]="cateogry.valid || cateogry.untouched">*Cateogry is Required</small>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="formref.invalid">Add Product</button>
+        </form>
+    </div>
+</div>

@@ -12,8 +12,10 @@ import { RestService } from 'src/_Services/rest.service';
 export class UserHeaderComponent implements OnInit {
 
   constructor(public Authservice: AuthService, public router: Router, public service: RestService) { }
-
+  user: Customer = new Customer();
   ngOnInit(): void {
+    this.service.getUserById(this.service.getUserdetails().id).subscribe(d => { this.user = d; console.log(this.user) }, f => console.log("error " + f));
+    console.log(this.user.username + " is name at login")
   }
 
   public isLoggedIn() {

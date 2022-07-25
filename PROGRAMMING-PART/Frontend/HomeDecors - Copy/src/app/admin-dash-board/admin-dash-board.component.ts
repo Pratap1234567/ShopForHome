@@ -53,5 +53,8 @@ export class AdminDashBoardComponent implements OnInit {
   register() {
     this.router.navigate(['register'])
   }
+  addproduct() {
+    this.router.navigate(['/saveproduct']);
+  }
 
 }

@@ -103,6 +103,11 @@ public class Productservice {
 		}	
 	}
 	
+	public Product saveProduct(Product p) {	
+		return productRepository.save(p);
+		
+	}
+	
 	
 	
 	

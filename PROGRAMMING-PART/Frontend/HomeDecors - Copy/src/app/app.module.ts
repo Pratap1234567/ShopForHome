@@ -23,6 +23,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartlistComponent } from './cartlist/cartlist.component';
 import { RouterModule } from '@angular/router';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { ReportComponent } from './report/report.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,9 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
     UserListComponent,
     WishlistComponent,
     CartlistComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    ReportComponent,
+    AddproductComponent
   ],
   imports: [
     RouterModule,

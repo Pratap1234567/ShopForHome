@@ -63,7 +63,7 @@
                 </li>
             </ul>
 
-
+            <span style="margin-top: 3px;" class="badge badge-warning"> hello ! {{user.username}}</span>&nbsp;
             <button *ngIf="! isLoggedIn()" type="button" class="btn btn-secondary" routerLink="/login">Login</button>&nbsp;
             <button *ngIf="isLoggedIn()" type="button" class="btn btn-secondary" (click)="logout()">Logout</button>
         </div>

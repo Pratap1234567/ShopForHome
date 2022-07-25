@@ -1,0 +1,70 @@
+<div class="banner">
+    <app-admin-header></app-admin-header>
+    <div class="container">
+        <div class="offer">
+            <h1> SALES REPORT</h1>
+        </div>
+        <div style="width: 100%; color: whitesmoke;" class="graphs">
+            <div>
+                <h4 class="text-center">TODAY SALE</h4>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div>
+                <h4 class="text-center">OVERALL CATEGORY SALE</h4>
+                <canvas id="pieChart1"></canvas>
+            </div>
+        </div>
+        <div class="text-center text-light" style="font-weight: bolder; font-size: 25px; margin-top: 40px;">
+            CATEGORY SALE REPORT
+        </div>
+        <div style="width: 100%;height: 500px; border: 2px solid red; margin-top: 40px;padding: 20px;" class="d-inline-flex">
+            <div style="width: 50%; box-sizing: border-box; " class="center">
+                <table class="table" style="width: 95%; color: white;">
+                    <thead>
+                        <th scope="col">Category</th>
+                        <th scope="col">Quantity sold</th>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let ele of creport">
+                            <th scope="row">{{ele.category}}</th>
+                            <td>{{ele.qty}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div style="width: 50%; box-sizing: border-box; color: whitesmoke;" class="center">
+                <h1 class="text-center">TOTAL INCOME</h1>
+                <h1>&#8377;&nbsp;{{income}}/-</h1>
+            </div>
+        </div>
+        <div class="text-center text-light" style="font-weight: bolder; font-size: 25px; margin-top: 40px;">
+            ORDERS REPORT
+        </div>
+        <div style="color: whitesmoke; margin-top: 50px; padding-bottom:50px;">
+            <table class="table" style="color: white;">
+                <thead>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">ORDER_DATE</th>
+                    <th scope="col">PRODUCTNAME</th>
+                    <th scope="col">QUANTITY</th>
+                    <th scope="col">TOTAL PRICE</th>
+                    <th scope="col">USER NAME</th>
+                    <th scope="col">USER ID</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ele of reportinfo">
+                        <th scope="row">{{ele.category}}</th>
+                        <td>{{ele.orderDate}}</td>
+                        <td>{{ele.productname}}</td>
+                        <td>{{ele.qty}}</td>
+                        <td>{{ele.totalPrice}}</td>
+                        <td>{{ele.username}}</td>
+                        <td>{{ele.userid}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

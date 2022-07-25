@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,6 +70,10 @@ public class ProductController {
 	@PutMapping(value="AdminUpdatename/{pid}/{name}")
 	public void AdminUpdatename(@PathVariable("pid") int pid ,@PathVariable("name") String name) throws Exception {
 		productservice.AdminupdateName(pid, name);
+	}
+	@PostMapping("saveProduct")
+	public Product saveProduct(@RequestBody Product p) {
+		return productservice.saveProduct(p);
 	}
 
 }

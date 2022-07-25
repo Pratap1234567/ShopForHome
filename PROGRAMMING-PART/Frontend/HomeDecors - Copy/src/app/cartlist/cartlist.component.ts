@@ -28,6 +28,7 @@ export class CartlistComponent implements OnInit {
   statement: string = "";
   showform: boolean = false;
   showbill: boolean = false;
+  discount: string = ""
   checkaddress: Address = new Address();
 
   product = new Product();
@@ -83,17 +84,38 @@ export class CartlistComponent implements OnInit {
       this.statement += `\n ${ele.name} Quantity ${ele.rqty} Price ${ele.price * ele.rqty} \n`
     }
     console.log("please pay " + this.totalAmount)
-    if (this.totalAmount > 5000) {
-      alert("ohoooo! you are eligible for the 30% off on shopping rupees 5000")
-      this.statement += "\n ohoooo! you are eligible for the 30% off on shopping rupees 5000 \n"
+    if (this.totalAmount > 5000 && this.totalAmount <= 10000) {
+      this.discount = "10% OFF";
+      alert("ohoooo! you are eligible for the 10% off on shopping rupees 5000")
+      this.statement += "\n ohoooo! you are eligible for the 10% off on shopping Above rupees 5000 \n"
       // this.totalAmount = this.totalAmount - (0.3 * this.totalAmount)
-      this.discountAmount = this.totalAmount * 0.3;
-      console.log("after discount " + (this.totalAmount - this.discountAmount))
+      this.discountAmount = this.totalAmount * 0.1;
+
       this.statement += "\n Total amount after discount " + this.totalAmount;
       this.statement += "\n THANKS FOR SHOPPING ";
       this.statement += "\n PLEASE VISIT AGAIN ";
 
 
+    } else if (this.totalAmount > 10000 && this.totalAmount <= 20000) {
+      this.discount = "30% OFF";
+      alert("ohoooo! you are eligible for the 30% off on shopping Above rupees 10000")
+      this.statement += "\n ohoooo! you are eligible for the 30% off on shopping Above rupees 10000 \n"
+      // this.totalAmount = this.totalAmount - (0.3 * this.totalAmount)
+      this.discountAmount = this.totalAmount * 0.1;
+
+      this.statement += "\n Total amount after discount " + this.totalAmount;
+      this.statement += "\n THANKS FOR SHOPPING ";
+      this.statement += "\n PLEASE VISIT AGAIN ";
+    } else if (this.totalAmount > 30000) {
+      this.discount = "40% OFF";
+      alert("ohoooo! you are eligible for the 40% off on shopping Above rupees 20000")
+      this.statement += "\n ohoooo! you are eligible for the 40% off on shopping rupees 5000 \n"
+      // this.totalAmount = this.totalAmount - (0.3 * this.totalAmount)
+      this.discountAmount = this.totalAmount * 0.4;
+
+      this.statement += "\n Total amount after discount " + (this.totalAmount - this.discountAmount);
+      this.statement += "\n THANKS FOR SHOPPING ";
+      this.statement += "\n PLEASE VISIT AGAIN ";
     }
     // alert("total is " + this.totalAmount)
     console.log(this.statement);
@@ -134,10 +156,15 @@ export class CartlistComponent implements OnInit {
     for (let p of this.WishListProducts) {
       console.log("First" + p.name + " " + p.qty);
       total = p.rqty * p.price;
-      this.service.savetoreport(p.category, p.name, p.rqty, total, this.customer.id, this.customer.username).subscribe(d => console.log("Added to report" + d), f => console.log("Error " + f));
+      this.service.savetoreport(p.category, p.name, p.rqty, total, this.customer.id, this.customer.username).subscribe(d => {
+        console.log("Added to report" + d); this.service.EmailtoCustomer("iambadrinath9@gmail.com", `THANKS FOR SHOPPING ${this.customer.username}`, `THANKS FOR SHOPPING PLEASE PAY ${this.totalAmount - this.discountAmount}/- ONLY`, "C:/Users/User/Wipro_Project/thank-you.jpg").subscribe(d => console.log("mail sent to Admin"), f => console.log(f));
+      }
+        , f => console.log("Error " + f));
       this.service.updateProductQty(p.id, p.rqty).subscribe(d => { console.log(d); console.log(p.name + " " + p.qty); }, f => console.log(f));
 
+
     }
+
     this.service.deleteallCart().subscribe(d => {
       console.log("deleted SuccessFully");
     }
@@ -147,7 +174,7 @@ export class CartlistComponent implements OnInit {
     this.allProductsList = [];
     this.ngOnInit();
     alert("THANKS FOR SHOPPING")
-    this.service.EmailtoCustomer("iambadrinath9@gmail.com", `THANKS FOR SHOPPING ${this.customer.username}`, `${this.statement}`, "C:/Users/User/Wipro_Project/thank-you.jpg").subscribe(d => console.log("mail sent to Admin"), f => console.log(f));
+
     this.router.navigate(['/userdash']);
 
   }

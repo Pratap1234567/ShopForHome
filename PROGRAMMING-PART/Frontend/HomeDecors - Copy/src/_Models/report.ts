@@ -1,11 +1,12 @@
 export class Report {
     id!: number;
-    Category!: string;
-    Productname!: string;
-    Qty!: number;
-    TotalPrice!: number;
+    category!: string;
+    productname!: string;
+    qty!: number;
+    totalPrice!: number;
+    orderDate!: any;
     userid!: number;
-    Username!: string;
+    username!: string;
     constructor() {
 
     }
